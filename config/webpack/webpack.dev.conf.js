@@ -2,7 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const path = require('path');
-const opn = require('opn');
+const open = require('open');
 module.exports = {
   entry: './src/app.jsx',
   output: {
@@ -40,7 +40,7 @@ module.exports = {
     minimizer: [
       new CssMinimizerPlugin({
         minimizerOptions: {
-          preset: 'advanced', // 需额外安装
+          preset: 'advanced',
         },
       })
     ]
@@ -60,7 +60,7 @@ module.exports = {
     port: 8080,
     hot: true,
     after () {
-      opn('http://localhost:' + this.port);
+      open('http://localhost:' + this.port);
     }
   }
 };
