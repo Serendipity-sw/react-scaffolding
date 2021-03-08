@@ -1,4 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const path = require('path');
 const opn = require('opn');
 module.exports = {
@@ -18,13 +20,13 @@ module.exports = {
         test: /\.pcss$/,
         exclude: /node_modules/,
         use: [
-          {
-            loader: 'style-loader',
-          },
+          MiniCssExtractPlugin.loader,
+
           {
             loader: 'css-loader',
             options: {
               importLoaders: 1,
+              sourceMap: true
             }
           },
           {
@@ -34,7 +36,19 @@ module.exports = {
       }
     ],
   },
+  optimization: {
+    minimizer: [
+      new CssMinimizerPlugin({
+        minimizerOptions: {
+          preset: 'advanced', // 需额外安装
+        },
+      })
+    ]
+  },
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: './css/[name].css',
+    }),
     new HtmlWebpackPlugin({
       title: 'webpack Boilerplate',
       template: path.resolve(__dirname, '../../template.html'),
