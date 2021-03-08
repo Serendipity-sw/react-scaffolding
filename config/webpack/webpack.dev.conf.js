@@ -1,5 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const opn = require('opn');
+
 module.exports = {
   entry: './src/app.jsx',
   output: {
@@ -21,5 +23,13 @@ module.exports = {
       template: path.resolve(__dirname, '../../template.html'),
       filename: 'index.html',
     })
-  ]
+  ],
+  devServer: {
+    host: '0.0.0.0',
+    port: 8080,
+    hot: true,
+    after () {
+      opn('http://localhost:' + this.port);
+    }
+  }
 };
