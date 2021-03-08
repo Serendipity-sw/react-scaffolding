@@ -1,5 +1,7 @@
 import React from 'react';
 import { HashRouter, NavLink, Route } from 'react-router-dom';
+import './index.pcss';
+import style from './index.pcss.json';
 
 class Index extends React.Component {
   constructor (props) {
@@ -16,7 +18,7 @@ class Index extends React.Component {
   render () {
     return (
       <HashRouter>
-        <div>
+        <div className={ style.home }>
           <span key={ this.state.name }>{ this.state.name }</span>
           <button onClick={ this.buttonClick }>确定</button>
         </div>
