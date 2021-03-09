@@ -7,12 +7,19 @@ class Index extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      name: 'props.name'
+      name: 'props.name',
+      list: {
+        name: '123',
+        sex: '男',
+        age: 12
+      },
     };
   }
 
   buttonClick = () => {
-    this.setState({ name: `name${ new Date() }` });
+    let { name, ...z } = this.state.list;
+    console.log(z);
+    this.setState({ name: `name${ new Date() }`, list: { ...this.state.list, sex: '女' } });
   };
 
   render () {
@@ -28,7 +35,7 @@ class Index extends React.Component {
 
           <div className={ style.iconDog }>321</div>
           <div className={ style.iconTiger }>543</div>
-          <div className={ style.iconLien }>9887</div>
+          <div className={ style.iconLien }>{ JSON.stringify(this.state.list) }</div>
         </div>
       </HashRouter>
     );

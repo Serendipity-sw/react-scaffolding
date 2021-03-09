@@ -37,26 +37,8 @@ module.exports = {
   },
   optimization: {
     splitChunks: {
-      chunks: 'all',
-      minSize: 249856,
-      minRemainingSize: 0,
-      maxSize: 249856,
-      minChunks: 1,
-      maxAsyncRequests: 30,
-      maxInitialRequests: 30,
-      enforceSizeThreshold: 249856,
-      cacheGroups: {
-        defaultVendors: {
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10,
-          reuseExistingChunk: true,
-        },
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true,
-        },
-      },
+      minSize: 10000,
+      maxSize: 250000,
     },
     minimizer: [
       new CssMinimizerPlugin({
@@ -80,6 +62,7 @@ module.exports = {
     host: '0.0.0.0',
     port: 8080,
     hot: true,
+    open: false,
     after () {
       open('http://localhost:' + this.port);
     }
