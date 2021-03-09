@@ -1,6 +1,37 @@
 .home {
-  @util size(12px);
-  position: absolute 12px 13px 14px 15px;
-  background: red;
+  @util center;
+  flex-wrap: wrap;
+  width: 50px;
+  height: @width;
   font-family: "sans-serif";
+
+  @mixin sexMode {
+    size: 100px;
+    @util center;
+  }
+
+  :global(.sex) {
+    background: red;
+    @include sexMode;
+  }
+
+  :global .sex {
+    span {
+      background: green;
+    }
+  }
+
+  .init {
+    all: initial !important;
+  }
+
+$loveAnimal: Dog, Tiger, Lien;
+
+  @each $icon in $loveAnimal {
+    .icon$(icon) {
+      size: 100px;
+      background: blue;
+      color: white;
+    }
+  }
 }

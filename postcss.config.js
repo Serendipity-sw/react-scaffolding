@@ -13,7 +13,9 @@ module.exports = {
     require('postcss-modules'),
     require('postcss-initial'),
     require('postcss-preset-env'),
-    require('postcss-utilities'),
+    require('postcss-utilities')({
+      centerMethod: 'flexbox'
+    }),
     require('postcss-short'),
     require('postcss-assets'),
     require('postcss-font-magician')({}),
