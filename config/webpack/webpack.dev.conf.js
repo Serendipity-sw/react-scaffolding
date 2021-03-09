@@ -56,6 +56,7 @@ module.exports = {
       title: 'webpack Boilerplate',
       template: path.resolve(__dirname, '../../template.html'),
       filename: 'index.html',
+      inject: 'body'
     })
   ],
   devServer: {
