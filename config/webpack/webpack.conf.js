@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const EncodingPlugin = require('webpack-encoding-plugin');
 const path = require('path');
 const open = require('open');
 module.exports = {
@@ -77,6 +78,9 @@ module.exports = {
       template: path.resolve(__dirname, '../../template.html'),
       filename: 'index.html',
       inject: 'body'
+    }),
+    new EncodingPlugin({
+      encoding: 'UTF-8'
     })
   ],
   devServer: {
