@@ -7,6 +7,5 @@ node_modules/*
 .cache-loader/*
 dist
 dist/*
-*/**/*.pcss.json
 *.lock
 .cache
