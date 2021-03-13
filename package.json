@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "scaffolding",
   "scripts": {
-    "start": "webpack serve --progress --mode development -c ./config/webpack/webpack.dev.conf.js",
-    "build": "webpack --progress --mode production -c ./config/webpack/webpack.dev.conf.js"
+    "start": "webpack serve --progress --mode development -c ./config/webpack/webpack.conf.js",
+    "build": "webpack --progress --mode production -c ./config/webpack/webpack.conf.js"
   },
   "repository": {
     "type": "git",
