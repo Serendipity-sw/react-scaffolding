@@ -2,11 +2,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const EncodingPlugin = require('webpack-encoding-plugin');
+const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
 const path = require('path');
 const open = require('open');
 module.exports = {
   entry: './src/app.jsx',
   output: {
+    charset: true,
     path: path.resolve(__dirname, '../../dist'),
     filename: './js/[name].bundle.js',
     clean: true
@@ -57,6 +59,7 @@ module.exports = {
     ],
   },
   optimization: {
+    usedExports: true,
     splitChunks: {
       minSize: 10000,
       maxSize: 250000,
@@ -66,7 +69,23 @@ module.exports = {
         minimizerOptions: {
           preset: 'advanced',
         },
-      })
+      }),
+      new ParallelUglifyPlugin({
+        cacheDir: '.cache/',
+        test: /.js$/,
+        workerCount: 2,
+        uglifyJS: {
+          output: {
+            beautify: false,
+            comments: false
+          },
+          compress: {
+            drop_console: true,
+            collapse_vars: true,
+            reduce_vars: true
+          }
+        },
+      }),
     ]
   },
   plugins: [

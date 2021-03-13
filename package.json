@@ -47,7 +47,8 @@
     "webpack": "^5.24.4",
     "webpack-cli": "^4.5.0",
     "webpack-dev-server": "^3.11.2",
-    "webpack-encoding-plugin": "^0.3.1"
+    "webpack-encoding-plugin": "^0.3.1",
+    "webpack-parallel-uglify-plugin": "^2.0.0"
   },
   "dependencies": {
     "react": "^17.0.1",
