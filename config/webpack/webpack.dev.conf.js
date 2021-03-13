@@ -7,7 +7,8 @@ module.exports = {
   entry: './src/app.jsx',
   output: {
     path: path.resolve(__dirname, '../../dist'),
-    filename: './js/[name].bundle.js'
+    filename: './js/[name].bundle.js',
+    clean: true
   },
   module: {
     rules: [
@@ -20,7 +21,12 @@ module.exports = {
         test: /\.pcss$/,
         exclude: /node_modules/,
         use: [
-          MiniCssExtractPlugin.loader,
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: '../'
+            }
+          },
           {
             loader: 'css-loader',
             options: {
@@ -32,6 +38,20 @@ module.exports = {
             loader: 'postcss-loader'
           }
         ]
+      },
+      {
+        test: /\.(?:ico|png|svg|jpg|jpeg|gif)$/i,
+        loader: 'file-loader',
+        options: {
+          name: './static/[name].[hash:8].[ext]',
+        }
+      },
+      {
+        test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
+        loader: 'file-loader',
+        options: {
+          name: './static/[name].[hash:8].[ext]',
+        }
       }
     ],
   },
@@ -50,7 +70,7 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: './css/[name].css',
+      filename: './css/[name].bundle.css',
     }),
     new HtmlWebpackPlugin({
       title: 'webpack Boilerplate',

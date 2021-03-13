@@ -2,6 +2,7 @@ import React from 'react';
 import { HashRouter, NavLink, Route } from 'react-router-dom';
 import './index.pcss';
 import style from './index.pcss.json';
+import nihaosdf from './images/login-bg.png'
 
 class Index extends React.Component {
   constructor (props) {
@@ -27,11 +28,12 @@ class Index extends React.Component {
       <HashRouter>
         <div className={ style.home }>
           <span key={ this.state.name }>{ this.state.name }</span>
+          <img src={nihaosdf} alt=""/>
           <div className={ 'sex' }>
             <span>3</span><span>3</span><span>3</span>
           </div>
           <span className={ style.init }>asdf</span>
-          <button onClick={ this.buttonClick }>确定</button>
+          <button { ...this.state } onClick={ this.buttonClick }>确定</button>
 
           <div className={ style.iconDog }>321</div>
           <div className={ style.iconTiger }>543</div>
