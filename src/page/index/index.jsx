@@ -21,14 +21,14 @@ class Index extends React.Component {
     debugger
     let { name, ...z } = this.state.list;
     console.log(z);
-    this.setState({ name: `name${ new Date() }`, list: { ...this.state.list, sex: '女' } });
+    this.setState({ name: `name${ new Date() }`, list: { ...this.state.list, sex: '女wwww' } });
   };
 
   render () {
     return (
       <HashRouter>
         <div className={ style.home }>
-          <span key={ this.state.name }>{ this.state.name }</span>
+          <span key={ this.state.name }>{ this.state.name }asdf</span>
           <img src={ nihaosdf } alt=""/>
           <div className={ 'sex' }>
             <span>3</span><span>3</span><span>3</span>

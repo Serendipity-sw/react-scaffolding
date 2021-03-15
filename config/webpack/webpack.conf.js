@@ -5,6 +5,8 @@ const EncodingPlugin = require('webpack-encoding-plugin');
 const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
 const path = require('path');
 const open = require('open');
+const Webpack = require('webpack');
+
 module.exports = {
   entry: './src/app.jsx',
   output: {
@@ -89,6 +91,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new Webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
       filename: './css/[name].bundle.css',
     }),
