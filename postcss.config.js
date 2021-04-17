@@ -10,7 +10,6 @@ module.exports = {
         borderRadius: 0,
       },
     }),
-    require('postcss-modules'),
     require('postcss-initial'),
     require('postcss-preset-env'),
     require('postcss-utilities')({

@@ -1,7 +1,6 @@
 import React from 'react';
 import { HashRouter, NavLink, Route } from 'react-router-dom';
-import './index.pcss';
-import style from './index.pcss.json';
+import style from './index.pcss';
 import nihaosdf from './images/login-bg.png';
 
 class Index extends React.Component {
