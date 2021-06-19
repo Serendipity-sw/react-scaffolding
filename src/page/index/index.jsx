@@ -28,21 +28,19 @@ class Index extends React.Component {
 
   render() {
     return (
-      <HashRouter>
-        <div className={style.home}>
-          <span key={this.state.name}>{this.state.name}asdf</span>
-          <img src={nihaosdf} alt=""/>
-          <div className={'sex'}>
-            <span>3</span><span>3</span><span>3</span>
-          </div>
-          <span className={style.init}>asdf</span>
-          <button {...this.state} onClick={this.buttonClick}>确定</button>
-
-          <div className={style.iconDog}>321</div>
-          <div className={style.iconTiger}>543</div>
-          <div className={style.iconLien}>{JSON.stringify(this.state.list)}</div>
+      <div className={style.home}>
+        <span key={this.state.name}>{this.state.name}asdf</span>
+        <img src={nihaosdf} alt=""/>
+        <div className={'sex'}>
+          <span>3</span><span>3</span><span>3</span>
         </div>
-      </HashRouter>
+        <span className={style.init}>asdf</span>
+        <button {...this.state} onClick={this.buttonClick}>确定</button>
+
+        <div className={style.iconDog}>321</div>
+        <div className={style.iconTiger}>543</div>
+        <div className={style.iconLien}>{JSON.stringify(this.state.list)}</div>
+      </div>
     );
   }
 }
