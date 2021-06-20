@@ -6,6 +6,8 @@ const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
 const path = require('path');
 const open = require('open');
 const Webpack = require('webpack');
+const WebpackBar = require('webpackbar');
+const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 
 module.exports = {
   entry: './src/app.jsx',
@@ -98,6 +100,8 @@ module.exports = {
     ]
   },
   plugins: [
+    // new BundleAnalyzerPlugin(),  打包优化检查
+    new WebpackBar({}),
     new Webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
       filename: './css/[name].bundle.css',
