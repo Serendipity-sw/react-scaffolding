@@ -9,6 +9,7 @@ const Webpack = require('webpack');
 const WebpackBar = require('webpackbar');
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
+const TerserPlugin = require("terser-webpack-plugin")
 
 module.exports = {
   entry: './src/app.jsx',
@@ -72,11 +73,9 @@ module.exports = {
   },
   optimization: {
     usedExports: true,
-    splitChunks: {
-      minSize: 10000,
-      maxSize: 250000,
-    },
+    minimize: true,
     minimizer: [
+      new TerserPlugin(),
       new CssMinimizerPlugin({
         minimizerOptions: {
           preset: 'advanced',
