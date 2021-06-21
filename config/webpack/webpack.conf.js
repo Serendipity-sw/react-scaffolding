@@ -8,6 +8,7 @@ const open = require('open');
 const Webpack = require('webpack');
 const WebpackBar = require('webpackbar');
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
+const CompressionWebpackPlugin = require('compression-webpack-plugin')
 
 module.exports = {
   entry: './src/app.jsx',
@@ -100,7 +101,7 @@ module.exports = {
     ]
   },
   plugins: [
-    // new BundleAnalyzerPlugin(),  打包优化检查
+    // new BundleAnalyzerPlugin(),  //打包优化检查
     new WebpackBar({}),
     new Webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
@@ -114,6 +115,9 @@ module.exports = {
     }),
     new EncodingPlugin({
       encoding: 'UTF-8'
+    }),
+    new CompressionWebpackPlugin({
+      algorithm: 'gzip'
     })
   ],
   devServer: {
@@ -121,7 +125,7 @@ module.exports = {
     port: 8080,
     hot: true,
     open: false,
-    after () {
+    after() {
       open('http://localhost:' + this.port);
     }
   }
