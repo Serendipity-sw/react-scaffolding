@@ -37,6 +37,7 @@
     "postcss-assets": "^5.0.0",
     "postcss-autoreset": "^3.0.3",
     "postcss-font-magician": "^3.0.0",
+    "postcss-import": "^14.0.2",
     "postcss-initial": "^4.0.0",
     "postcss-loader": "^5.1.0",
     "postcss-preset-env": "^6.7.0",
