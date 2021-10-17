@@ -9,9 +9,9 @@
     "build-develop-fix": "webpack --progress --mode production -c ./config/webpack/webpack.dev.js",
     "build-release": "webpack --progress --mode production -c ./config/webpack/webpack.release.js",
     "build": "webpack --progress --mode production -c ./config/webpack/webpack.product.js",
-    "build-develop-fix:zip": "webpack --progress --mode production -c ./config/webpack/webpack.dev.js && yarn run zip",
-    "build-release:zip": "webpack --progress --mode production -c ./config/webpack/webpack.release.js && yarn run zip",
-    "build:zip": "webpack --progress --mode production -c ./config/webpack/webpack.product.js && yarn run zip",
+    "build-develop-fix:zip": "yarn run build-develop-fix && yarn run zip",
+    "build-release:zip": "yarn run build-release && yarn run zip",
+    "build:zip": "yarn run build && yarn run zip",
     "upload-build-develop-fix": "yarn run build-develop-fix && gulp buildTime && gulp uploadDevelop",
     "upload-build-release": "yarn run build-release && gulp buildTime && gulp uploadRelease"
   },
