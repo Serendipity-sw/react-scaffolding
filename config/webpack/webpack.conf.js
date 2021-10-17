@@ -7,7 +7,6 @@ const path = require('path');
 const open = require('open');
 const Webpack = require('webpack');
 const WebpackBar = require('webpackbar');
-const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const TerserPlugin = require("terser-webpack-plugin")
 
@@ -100,7 +99,6 @@ module.exports = {
     ]
   },
   plugins: [
-    // new BundleAnalyzerPlugin(),  //打包优化检查
     new WebpackBar({}),
     new Webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({

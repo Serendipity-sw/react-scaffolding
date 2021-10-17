@@ -5,6 +5,7 @@
   "scripts": {
     "zip": "gulp buildTime && gulp zip",
     "start": "webpack serve --progress --mode development -c ./config/webpack/webpack.dev.js",
+    "analyze": "webpack --progress --mode production -c ./config/webpack/webpack.analyze.js",
     "build-develop-fix": "webpack --progress --mode production -c ./config/webpack/webpack.dev.js",
     "build-release": "webpack --progress --mode production -c ./config/webpack/webpack.release.js",
     "build": "webpack --progress --mode production -c ./config/webpack/webpack.product.js",
