@@ -9,6 +9,7 @@ const Webpack = require('webpack');
 const WebpackBar = require('webpackbar');
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const TerserPlugin = require("terser-webpack-plugin")
+const portFinderSync = require('portfinder-sync')
 
 module.exports = {
   entry: './src/app.jsx',
@@ -119,9 +120,9 @@ module.exports = {
   ],
   devServer: {
     host: '0.0.0.0',
-    port: 8080,
     hot: true,
     open: false,
+    port: portFinderSync.getPort(3000),
     after() {
       open('http://localhost:' + this.port);
     }
