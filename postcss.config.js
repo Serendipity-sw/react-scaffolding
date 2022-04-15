@@ -18,7 +18,6 @@ module.exports = {
     }),
     require('postcss-short'),
     require('postcss-assets'),
-    require('postcss-font-magician')({}),
     require('postcss-pxtorem')({
       rootValue: 100,
       unitPrecision: 5,
