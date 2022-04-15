@@ -16,7 +16,7 @@ module.exports = {
   output: {
     charset: true,
     path: path.resolve(__dirname, '../../dist'),
-    filename: './js/[name].bundle.js',
+    filename: './js/[name].bundle.[hash].js',
     clean: true
   },
   module: {
@@ -103,7 +103,7 @@ module.exports = {
     new WebpackBar({}),
     new Webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
-      filename: './css/[name].bundle.css',
+      filename: './css/[name].bundle.[hash].css',
     }),
     new HtmlWebpackPlugin({
       title: 'webpack Boilerplate',
