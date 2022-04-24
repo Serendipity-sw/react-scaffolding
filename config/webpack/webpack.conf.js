@@ -4,19 +4,19 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const EncodingPlugin = require('webpack-encoding-plugin');
 const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
 const path = require('path');
-const open = require('open');
 const Webpack = require('webpack');
 const WebpackBar = require('webpackbar');
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const TerserPlugin = require("terser-webpack-plugin")
 const portFinderSync = require('portfinder-sync')
+const DashboardPlugin = require( 'webpack-dashboard/plugin' )
 
 module.exports = {
   entry: './src/app.jsx',
   output: {
     charset: true,
     path: path.resolve(__dirname, '../../dist'),
-    filename: './js/[name].bundle.[hash].js',
+    filename: './js/[name].bundle.[chunkhash].js',
     clean: true
   },
   module: {
@@ -59,14 +59,14 @@ module.exports = {
         test: /\.(?:ico|png|svg|jpg|jpeg|gif)$/i,
         loader: 'file-loader',
         options: {
-          name: './static/[name].[hash:8].[ext]',
+          name: './static/[name].[chunkhash].[ext]',
         }
       },
       {
         test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
         loader: 'file-loader',
         options: {
-          name: './static/[name].[hash:8].[ext]',
+          name: './static/[name].[chunkhash].[ext]',
         }
       }
     ],
@@ -103,7 +103,7 @@ module.exports = {
     new WebpackBar({}),
     new Webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
-      filename: './css/[name].bundle.[hash].css',
+      filename: './css/[name].bundle.[chunkhash].css',
     }),
     new HtmlWebpackPlugin({
       title: 'webpack Boilerplate',
@@ -114,17 +114,19 @@ module.exports = {
     new EncodingPlugin({
       encoding: 'UTF-8'
     }),
+    new DashboardPlugin(),
     new CompressionWebpackPlugin({
       algorithm: 'gzip'
     })
   ],
   devServer: {
-    host: '0.0.0.0',
-    hot: true,
-    open: false,
-    port: portFinderSync.getPort(3000),
-    after() {
-      open('http://localhost:' + this.port);
+    host: '127.0.0.1',
+    port: portFinderSync.getPort( 3000 ),
+    hot: false,
+    open: true,
+    client: {
+      overlay: true,
+      progress: true
     }
   }
 };
