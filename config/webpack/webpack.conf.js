@@ -20,6 +20,9 @@ module.exports = {
         filename: './js/[name].bundle.[chunkhash].js',
         clean: true
     },
+    resolve: {
+        extensions: ['.js', '.jsx', '.json']
+    },
     module: {
         rules: [
             {
