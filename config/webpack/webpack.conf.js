@@ -1,16 +1,16 @@
-const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
-const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
-const CssMinimizerPlugin = require( 'css-minimizer-webpack-plugin' );
-const EncodingPlugin = require( 'webpack-encoding-plugin' );
-const ParallelUglifyPlugin = require( 'webpack-parallel-uglify-plugin' );
-const path = require( 'path' );
-const Webpack = require( 'webpack' );
-const WebpackBar = require( 'webpackbar' );
+const HtmlWebpackPlugin = require( 'html-webpack-plugin' )
+const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' )
+const CssMinimizerPlugin = require( 'css-minimizer-webpack-plugin' )
+const EncodingPlugin = require( 'webpack-encoding-plugin' )
+const ParallelUglifyPlugin = require( 'webpack-parallel-uglify-plugin' )
+const path = require( 'path' )
+const Webpack = require( 'webpack' )
+const WebpackBar = require( 'webpackbar' )
 const CompressionWebpackPlugin = require( 'compression-webpack-plugin' )
-const TerserPlugin = require( "terser-webpack-plugin" )
+const TerserPlugin = require( 'terser-webpack-plugin' )
 const portFinderSync = require( 'portfinder-sync' )
 const DashboardPlugin = require( 'webpack-dashboard/plugin' )
-const OptimizeCSSAssetsPlugin = require( "optimize-css-assets-webpack-plugin" )
+const OptimizeCSSAssetsPlugin = require( 'optimize-css-assets-webpack-plugin' )
 
 module.exports = {
     entry: './src/app.jsx',
@@ -21,7 +21,10 @@ module.exports = {
         clean: true
     },
     resolve: {
-        extensions: ['.js', '.jsx', '.json']
+        alias: {
+            src: path.resolve( __dirname, '../../src/' )
+        },
+        extensions: [ '.js', '.jsx', '.json' ]
     },
     module: {
         rules: [
@@ -45,7 +48,7 @@ module.exports = {
                         options: {
                             importLoaders: 1,
                             modules: {
-                                localIdentName: "[path]__[name]__[local]--[hash:base64:12]",
+                                localIdentName: '[path]__[name]__[local]--[hash:base64:12]'
                             },
                             sourceMap: true
                         }
@@ -63,17 +66,17 @@ module.exports = {
                 test: /\.(?:ico|png|svg|jpg|jpeg|gif)$/i,
                 loader: 'url-loader',
                 options: {
-                    name: './static/[name].[chunkhash].[ext]',
+                    name: './static/[name].[chunkhash].[ext]'
                 }
             },
             {
                 test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
                 loader: 'url-loader',
                 options: {
-                    name: './static/[name].[chunkhash].[ext]',
+                    name: './static/[name].[chunkhash].[ext]'
                 }
             }
-        ],
+        ]
     },
     optimization: {
         usedExports: true,
@@ -82,9 +85,7 @@ module.exports = {
             new TerserPlugin(),
             new OptimizeCSSAssetsPlugin( {} ),
             new CssMinimizerPlugin( {
-                minimizerOptions: {
-                    preset: 'advanced',
-                },
+                parallel: true
             } ),
             new ParallelUglifyPlugin( {
                 cacheDir: '.cache/',
@@ -100,15 +101,15 @@ module.exports = {
                         collapse_vars: true,
                         reduce_vars: true
                     }
-                },
-            } ),
+                }
+            } )
         ]
     },
     plugins: [
         new WebpackBar( {} ),
         new Webpack.HotModuleReplacementPlugin(),
         new MiniCssExtractPlugin( {
-            filename: './css/[name].bundle.[chunkhash].css',
+            filename: './css/[name].bundle.[chunkhash].css'
         } ),
         new HtmlWebpackPlugin( {
             title: 'webpack Boilerplate',
@@ -134,4 +135,4 @@ module.exports = {
             progress: true
         }
     }
-};
+}

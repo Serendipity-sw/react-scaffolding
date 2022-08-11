@@ -12,6 +12,11 @@ html, body {
   background-size: 100% 100%;
 }
 
+$sexMode {
+  size: 100Px;
+  @util center;
+}
+
 .home {
   @util center;
   flex-wrap: wrap;
@@ -19,14 +24,9 @@ html, body {
   height: @width;
   font-family: "sans-serif";
 
-  @mixin sexMode {
-    size: 100Px;
-    @util center;
-  }
-
   :global(.sex) {
     background: red;
-    @include sexMode;
+    @extend $sexMode;
   }
 
   :global .sex {
