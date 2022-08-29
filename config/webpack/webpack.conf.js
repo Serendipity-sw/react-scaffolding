@@ -1,7 +1,6 @@
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' )
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' )
 const CssMinimizerPlugin = require( 'css-minimizer-webpack-plugin' )
-const EncodingPlugin = require( 'webpack-encoding-plugin' )
 const ParallelUglifyPlugin = require( 'webpack-parallel-uglify-plugin' )
 const path = require( 'path' )
 const Webpack = require( 'webpack' )
@@ -10,7 +9,6 @@ const CompressionWebpackPlugin = require( 'compression-webpack-plugin' )
 const TerserPlugin = require( 'terser-webpack-plugin' )
 const portFinderSync = require( 'portfinder-sync' )
 const DashboardPlugin = require( 'webpack-dashboard/plugin' )
-const OptimizeCSSAssetsPlugin = require( 'optimize-css-assets-webpack-plugin' )
 
 module.exports = {
     entry: './src/app.jsx',
@@ -32,31 +30,6 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 exclude: /(node_modules)/,
                 use: 'babel-loader'
-            },
-            {
-                test: /\.(css|pcss)$/,
-                exclude: /node_modules/,
-                use: [
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {
-                            publicPath: '../'
-                        }
-                    },
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            importLoaders: 1,
-                            modules: {
-                                localIdentName: '[path]__[name]__[local]--[hash:base64:12]'
-                            },
-                            sourceMap: true
-                        }
-                    },
-                    {
-                        loader: 'postcss-loader'
-                    }
-                ]
             },
             {
                 test: /\.css$/,
@@ -83,10 +56,7 @@ module.exports = {
         minimize: true,
         minimizer: [
             new TerserPlugin(),
-            new OptimizeCSSAssetsPlugin( {} ),
-            new CssMinimizerPlugin( {
-                parallel: true
-            } ),
+            new CssMinimizerPlugin( ),
             new ParallelUglifyPlugin( {
                 cacheDir: '.cache/',
                 test: /.js$/,
@@ -112,13 +82,10 @@ module.exports = {
             filename: './css/[name].bundle.[chunkhash].css'
         } ),
         new HtmlWebpackPlugin( {
-            title: 'webpack Boilerplate',
+            title: '低代码平台',
             template: path.resolve( __dirname, '../../template.html' ),
             filename: 'index.html',
             inject: 'body'
-        } ),
-        new EncodingPlugin( {
-            encoding: 'UTF-8'
         } ),
         new DashboardPlugin(),
         new CompressionWebpackPlugin( {

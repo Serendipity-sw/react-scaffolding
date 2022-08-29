@@ -3,10 +3,13 @@ module.exports = {
     require('postcss-nested'),
     require('postcss-import'),
     require('postcss-atroot'),
-    require('postcss-extend-rule'),
     require('postcss-property-lookup'),
     require('autoprefixer'),
     require('postcss-use'),
+    require('cssnano')({
+      preset: 'default',
+    }),
+    require('postcss-advanced-variables'),
     require('postcss-autoreset')({
       reset: {
       },
