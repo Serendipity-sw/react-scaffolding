@@ -53,6 +53,7 @@
     "postcss-atroot": "^0.2.3",
     "postcss-autoreset": "^3.0.3",
     "postcss-import": "^14.0.2",
+    "postcss-import-alias-resolver": "^0.1.1",
     "postcss-initial": "^3.0.4",
     "postcss-loader": "^6.2.1",
     "postcss-nested": "^5.0.6",

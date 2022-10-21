@@ -1,7 +1,12 @@
 module.exports = {
   plugins: [
     require('postcss-nested'),
-    require('postcss-import'),
+    require('postcss-import')({
+      resolve: require('postcss-import-alias-resolver')({
+        alias: {
+        }
+      })
+    }),
     require('postcss-atroot'),
     require('postcss-property-lookup'),
     require('autoprefixer'),
