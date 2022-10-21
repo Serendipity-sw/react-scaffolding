@@ -2,10 +2,13 @@ module.exports = {
   plugins: [
     require('postcss-nested'),
     require('postcss-import')({
-      resolve: require('postcss-import-alias-resolver')({
-        alias: {
+      resolve: (id, base, resolvedPath) => {
+        if (id.indexOf('src/')===0){
+          return `${resolvedPath.root}/${id}`
+        }else{
+          return `${base}/${id}`
         }
-      })
+      }
     }),
     require('postcss-atroot'),
     require('postcss-property-lookup'),
