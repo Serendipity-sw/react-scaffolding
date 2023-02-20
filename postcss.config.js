@@ -18,10 +18,6 @@ module.exports = {
       preset: 'default',
     }),
     require('postcss-advanced-variables'),
-    require('postcss-autoreset')({
-      reset: {
-      },
-    }),
     require('postcss-initial'),
     require('postcss-preset-env'),
     require('postcss-utilities')({

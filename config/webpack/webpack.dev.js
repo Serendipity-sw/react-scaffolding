@@ -1,12 +1,16 @@
-const { merge } = require( 'webpack-merge' )
-const baseWebpackConfig = require( './webpack.conf' )
-const webpack = require( 'webpack' )
-const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' )
+const {merge} = require('webpack-merge')
+const baseWebpackConfig = require('./webpack.conf')
+const webpack = require('webpack')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const portFinderSync = require('portfinder-sync')
+const {WebpackOpenBrowser} = require('webpack-open-browser')
 
-let config = merge( baseWebpackConfig, {
+const port = portFinderSync.getPort(3000)
+
+let config = merge(baseWebpackConfig, {
   // devtool: 'eval-cheap-module-source-map',
-  module:{
-    rules:[
+  module: {
+    rules: [
       {
         test: /\.(css|pcss)$/,
         exclude: /node_modules/,
@@ -35,10 +39,22 @@ let config = merge( baseWebpackConfig, {
     ]
   },
   plugins: [
-    new webpack.DefinePlugin( {
-      Gloomy_env: JSON.stringify( 'development' )
-    } )
-  ]
-} )
+    new WebpackOpenBrowser({url: `http://localhost:${port}`}),
+    new webpack.DefinePlugin({
+      Gloomy_env: JSON.stringify('development')
+    })
+  ],
+  devServer: {
+    host: '0.0.0.0',
+    port,
+    hot: true,
+    open: false,
+    compress: true,
+    client: {
+      overlay: true,
+      progress: true
+    }
+  }
+})
 
 module.exports = config
