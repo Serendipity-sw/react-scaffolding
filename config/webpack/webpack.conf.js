@@ -1,5 +1,4 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const path = require('path')
 const WebpackBar = require('webpackbar')
 
@@ -61,9 +60,10 @@ module.exports = {
     ]
   },
   plugins: [
-    new WebpackBar({}),
-    new MiniCssExtractPlugin({
-      filename: './css/[name].bundle.[chunkhash].css'
+    new WebpackBar({
+      color: "#85d",
+      basic: false,
+      profile: false
     }),
     new HtmlWebpackPlugin({
       title: '低代码平台',
