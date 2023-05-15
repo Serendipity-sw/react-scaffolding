@@ -39,6 +39,9 @@ let config = merge(baseWebpackConfig, {
     ]
   },
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: './css/[name].bundle.[chunkhash].css'
+    }),
     new WebpackOpenBrowser({url: `http://localhost:${port}`}),
     new webpack.DefinePlugin({
       Gloomy_env: JSON.stringify('development')
