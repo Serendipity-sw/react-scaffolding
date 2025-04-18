@@ -1,51 +1,14 @@
-:root {
-    --homeSize: 50Px;
-}
+.init {
+  width: 100%;
+  height: @width;
+  @util center;
+  flex-direction: column;
 
-html, body {
-    size: 100%;
-}
-
-:global #root {
-    size: 100%;
-    background: url("./images/login-bg.png") no-repeat 100%;
+  .img {
+    display: block;
+    background: url('./images/title-left-icon.png') no-repeat center;
     background-size: 100% 100%;
-}
-
-@mixin sexMode {
-    size: 100Px;
-    @util center;
-}
-
-.home {
-    @util center;
-    flex-wrap: wrap;
-    width: var(--homeSize);
+    width: 50px;
     height: @width;
-    font-family: "sans-serif";
-
-    :global(.sex) {
-        background: red;
-        @include sexMode;
-    }
-
-    :global .sex {
-        span {
-            background: green;
-        }
-    }
-
-    .init {
-        all: initial !important;
-    }
-
-$loveAnimal: Dog, Tiger, Lien;
-
-    @each $icon in $loveAnimal {
-        .icon$(icon) {
-            size: 100Px;
-            background: blue;
-            color: white;
-        }
-    }
+  }
 }

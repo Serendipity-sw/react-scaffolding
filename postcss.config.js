@@ -3,9 +3,9 @@ module.exports = {
     require('postcss-nested'),
     require('postcss-import')({
       resolve: (id, base, resolvedPath) => {
-        if (id.indexOf('src/')===0){
+        if (id.indexOf('src/') === 0) {
           return `${resolvedPath.root}/${id}`
-        }else{
+        } else {
           return `${base}/${id}`
         }
       }
@@ -15,15 +15,13 @@ module.exports = {
     require('autoprefixer'),
     require('postcss-use'),
     require('cssnano')({
-      preset: 'default',
+      preset: 'default'
     }),
     require('postcss-advanced-variables'),
     require('postcss-initial'),
     require('postcss-preset-env'),
     require('postcss-utilities')({
       centerMethod: 'flexbox'
-    }),
-    require('postcss-short'),
-    require('postcss-assets')
+    })
   ]
 };

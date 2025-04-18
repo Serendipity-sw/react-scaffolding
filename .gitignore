@@ -9,3 +9,7 @@ dist
 dist/*
 *.lock
 .cache
+build
+backup
+*.yaml
+push-file-name

@@ -1,0 +1,17 @@
+{
+  "tabWidth": 2,
+  "semi": false,
+  "printWidth": 80,
+  "singleQuote": true,
+  "arrowParens": "avoid",
+  "bracketSpacing": true,
+  "endOfLine": "auto",
+  "jsxBracketSameLine": false,
+  "jsxSingleQuote": false,
+  "trailingComma": "none",
+  "sortClassContents": false,
+  "plugins": [
+    "prettier-plugin-organize-imports",
+    "prettier-plugin-css-order"
+  ]
+}

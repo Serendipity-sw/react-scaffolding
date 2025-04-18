@@ -1,31 +1,26 @@
 {
   "presets": [
-    "@babel/preset-react",
-    "@babel/preset-env"
+    [
+      "@babel/preset-react",
+      {
+        "runtime": "automatic"
+      }
+    ]
   ],
-  "env": {
-    "development": {
-      "presets": []
-    }
-  },
   "plugins": [
+    "@babel/plugin-transform-runtime",
     [
       "@babel/plugin-proposal-decorators",
       {
-        "legacy": true
+        "version": "2023-11"
       }
     ],
-    [
-      "@babel/plugin-proposal-private-methods",
-      {
-        "loose": false
-      }
-    ],
-    [
-      "@babel/plugin-proposal-class-properties",
-      {
-        "loose": false
-      }
-    ]
-  ]
+    "@babel/plugin-transform-private-methods",
+    "@babel/plugin-transform-class-static-block",
+    "@babel/plugin-transform-class-properties"
+  ],
+  "assumptions": {
+    "privateFieldsAsProperties": true,
+    "setPublicClassFields": true
+  }
 }

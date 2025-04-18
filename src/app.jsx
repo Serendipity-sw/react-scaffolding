@@ -1,14 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
-import Index from './page/index/index.jsx';
-import configureStore from "./reducers/configureStore";
-import {HashRouter} from "react-router-dom";
+import { createRoot } from 'react-dom/client'
+import './common/css/common.pcss'
+import Init from './page/init'
 
-ReactDOM.render([
-  <Provider key="store" store={configureStore}>
-    <HashRouter>
-      <Index/>
-    </HashRouter>
-  </Provider>
-], document.getElementById('root'));
+createRoot(document.getElementById('root')).render([
+  <Init key="33b30e49-180f-404c-afc7-235401e1864c" />
+])
