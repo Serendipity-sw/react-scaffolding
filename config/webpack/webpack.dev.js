@@ -8,7 +8,11 @@ const path = require('path')
 const port = portFinderSync.getPort(3000)
 
 let config = merge(baseWebpackConfig, {
+  cache: true,
   devtool: 'source-map',
+  watchOptions: {
+    ignored: /node_modules/
+  },
   module: {
     rules: [
       {

@@ -4,7 +4,6 @@ const WebpackBar = require('webpackbar')
 const configFile = require('../../package.json')
 
 module.exports = {
-  cache: true,
   entry: './src/app.jsx',
   resolve: {
     extensions: ['.js', '.jsx', '.json']
