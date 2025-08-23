@@ -5,8 +5,19 @@ const portFinderSync = require('portfinder-sync')
 const { WebpackOpenBrowser } = require('webpack-open-browser')
 const path = require('path')
 const webpack = require('webpack')
+const fs = require('fs')
 
 const port = portFinderSync.getPort(3000)
+
+let apiProxy = 'http://localhost/Api'
+
+try {
+  const apiProxyFileContent = fs.readFileSync('api-proxy', 'utf8')
+  console.info('file read success!', apiProxyFileContent)
+  if (apiProxyFileContent) {
+    apiProxy = apiProxyFileContent
+  }
+} catch (err) {}
 
 let config = merge(baseWebpackConfig, {
   cache: true,
@@ -58,7 +69,15 @@ let config = merge(baseWebpackConfig, {
       overlay: false,
       progress: true
     },
-    proxy: []
+    proxy: [
+      {
+        context: ['/api'],
+        target: apiProxy,
+        pathRewrite: { '^/api': '' },
+        changeOrigin: true,
+        secure: false
+      }
+    ]
   },
   plugins: [
     new MiniCssExtractPlugin({
