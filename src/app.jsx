@@ -1,5 +1,6 @@
 import { createRoot } from 'react-dom/client'
 import './common/css/common.pcss'
+import './locale/init'
 import Init from './page/init'
 
 createRoot(document.getElementById('root')).render([
