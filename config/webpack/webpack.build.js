@@ -7,6 +7,7 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const path = require('path')
+const webpack = require('webpack')
 
 let config = merge(baseWebpackConfig, {
   cache: false,
@@ -86,6 +87,9 @@ let config = merge(baseWebpackConfig, {
           to: path.resolve(__dirname, `../../dist/public/`)
         }
       ]
+    }),
+    new webpack.DefinePlugin({
+      INDEXED_DB_STORE_KEY: JSON.stringify('react-scaffolding')
     })
   ]
 })

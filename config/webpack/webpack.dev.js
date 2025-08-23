@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const portFinderSync = require('portfinder-sync')
 const { WebpackOpenBrowser } = require('webpack-open-browser')
 const path = require('path')
+const webpack = require('webpack')
 
 const port = portFinderSync.getPort(3000)
 
@@ -63,7 +64,11 @@ let config = merge(baseWebpackConfig, {
     new MiniCssExtractPlugin({
       filename: './css/[name].bundle.css'
     }),
-    new WebpackOpenBrowser({ url: `http://localhost:${port}` })
+    new WebpackOpenBrowser({ url: `http://localhost:${port}` }),
+    new webpack.DefinePlugin({
+      // indexDb 缓存key
+      INDEXED_DB_STORE_KEY: JSON.stringify('react-scaffolding')
+    })
   ]
 })
 
