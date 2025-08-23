@@ -1,0 +1,13 @@
+{
+  "logsDir": "./logs",
+  "frontendDir": "./frontend-excel",
+  "mergeFrontendDir": "./merge-frontend-excel",
+  "frontendJsonDir": "./frontend-excel-json",
+  "frontendJsonFileName": "determine-json.js",
+  "frontendVariable": "frontendVariable",
+  "frontendWriteDir": "../../src/locale/language",
+  "exportDir": "./exportDir",
+  "translationSort": ["cn"],
+  "mergeDir": "./merge-excel-dir",
+  "syncDir": "./sync-excel-dir"
+}

@@ -1,3 +1,1 @@
-export default {
-  add_new: '新增'
-}
+export default { add_new: '新增' }

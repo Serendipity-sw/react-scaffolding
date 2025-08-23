@@ -3,13 +3,19 @@
   "version": "1.0.0",
   "description": "scaffolding",
   "scripts": {
+    "format:font-language": "prettier src/locale/language/**/* --write",
     "build-time": "node build-time.js",
     "rm-dist": "node remove-dist.js",
     "zip": "node build-zip.js",
     "analyze": "webpack --progress --mode production -c ./config/webpack/webpack.analyze.js",
     "start": "webpack serve --progress --mode development -c ./config/webpack/webpack.dev.js",
     "build": "pnpm run rm-dist && webpack --progress --mode production -c ./config/webpack/webpack.build.js && pnpm run build-time",
-    "build:zip": "pnpm run build && pnpm run zip"
+    "build:zip": "pnpm run build && pnpm run zip",
+    "export-tran": "webpack --progress --mode production -c ./config/export-translation-webpack/webpack.js",
+    "translation-js-convert-excel": "node ./service/translation-node-service/convert-js-to-excel.js",
+    "export-excel": "pnpm run export-tran && pnpm run translation-js-convert-excel",
+    "translation-excel-determine": "cd service/translation-service && translation-service.exe -d",
+    "translation": "pnpm run export-excel && pnpm run translation-excel-determine && pnpm run format:font-language"
   },
   "repository": {
     "type": "git",
@@ -79,6 +85,7 @@
     "webpack-dev-server": "^5.2.2",
     "webpack-merge": "^6.0.1",
     "webpack-open-browser": "^2.0.2",
-    "webpackbar": "^7.0.0"
+    "webpackbar": "^7.0.0",
+    "xlsx": "^0.18.5"
   }
 }
