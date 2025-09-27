@@ -2,7 +2,6 @@ import { openDB } from 'idb'
 import configJson from '../../package.json'
 
 export class DataStore {
-  static store
   static #databaseStorageTableName = 'request-api'
 
   static #initDB = _ => {
@@ -22,18 +21,27 @@ export class DataStore {
   }
 
   static GetItem = async key => {
-    this.store ||= await this.#initDB()
-    const result = await this.store.get(this.#databaseStorageTableName, key)
+    const db = await this.#initDB()
+    const readTx = db.transaction(this.#databaseStorageTableName, 'readonly')
+    const readStore = readTx.objectStore(this.#databaseStorageTableName)
+    const result = await readStore.get(key)
+    await readTx.done
     return result ? result.value : null
   }
 
   static SetItem = async (key, value) => {
-    this.store ||= await this.#initDB()
-    await this.store.put(this.#databaseStorageTableName, value, key)
+    const db = await this.#initDB()
+    const writeTx = db.transaction(this.#databaseStorageTableName, 'readwrite')
+    const writeStore = writeTx.objectStore(this.#databaseStorageTableName)
+    await writeStore.put({ value, key })
+    await writeTx.done
   }
 
   static RemoveItem = async key => {
-    this.store ||= await this.#initDB()
-    await this.store.delete(this.#databaseStorageTableName, key)
+    const db = await this.#initDB()
+    const tx = db.transaction(this.#databaseStorageTableName, 'readwrite')
+    const store = tx.objectStore(this.#databaseStorageTableName)
+    await store.delete(key)
+    await tx.done
   }
 }
